@@ -1,0 +1,83 @@
+/* Background Styling */
+.signin-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #121212, #333);
+  }
+  
+  /* Form Styling */
+  .signin-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .signin-form h2 {
+    margin-bottom: 1.5rem;
+    color: #ff6b6b;
+  }
+  
+  .signin-form label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    text-align: left;
+    color: #ddd;
+    font-size: 0.9rem;
+  }
+  
+  .signin-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .signin-form input::placeholder {
+    color: #bbb;
+  }
+  
+  .signin-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #ff6b6b;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signin-form button:hover {
+    background-color: #ff4c4c;
+  }
+  
+  .signin-form .signup-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .signin-form .signup-text a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signin-form .signup-text a:hover {
+    text-decoration: underline;
+  }
+  
