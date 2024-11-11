@@ -1,0 +1,136 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Container Styling */
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #121212, #333);
+    color: #fff;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6b6b;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .navbar .nav-links a:hover {
+    color: #ff6b6b;
+  }
+  
+  /* Game Content Styling */
+  .game-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Code Snippet Display Styling */
+  .snippet-display {
+    width: 100%;
+    background-color: #222;
+    color: #dcdcdc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .snippet-display h3 {
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .snippet-display pre {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ddd;
+  }
+  
+  /* Typing Input Area Styling */
+  .input-area {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-area label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #dcdcdc;
+  }
+  
+  .input-area input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+  }
+  
+  /* Progress Tracking Styling */
+  .progress {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    color: #dcdcdc;
+  }
+  
+  .progress p {
+    margin: 0.5rem 0;
+  }
+  
+  .progress span {
+    color: #ff6b6b;
+  }
+  

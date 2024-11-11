@@ -1,0 +1,28 @@
+<div class="game-container">
+    <nav class="navbar">
+      <div class="logo">CodeTyper</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Leaderboard</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </nav>
+  
+    <div class="game-content">
+      <div class="snippet-display">
+        <h3>Type the Code Below:</h3>
+        <pre [innerHTML]="codeSnippet"></pre>
+      </div>
+  
+      <div class="input-area">
+        <label for="userInput">Your Typing:</label>
+        <input type="text" id="userInput" placeholder="Start typing here..." />
+      </div>
+  
+      <div class="progress">
+        <p>Progress: <span>0%</span></p>
+        <p>Time Elapsed: <span>00:00</span></p>
+        <p>Errors: <span>0</span></p>
+      </div>
+    </div>
+  </div>
