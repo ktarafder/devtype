@@ -8,7 +8,14 @@
     </ul>
   </nav>
 
-  <div class="game-content" *ngIf="currentSnippetIndex < snippets.length">
+  <div *ngIf="!difficultySelected" class="difficulty-selection">
+    <h2>Select Difficulty</h2>
+    <button (click)="selectDifficulty('easy')">Easy</button>
+    <button (click)="selectDifficulty('medium')">Medium</button>
+    <button (click)="selectDifficulty('hard')">Hard</button>
+  </div>
+
+  <div class="game-content" *ngIf="difficultySelected && currentSnippetIndex < snippets.length">
     <div class="snippet-display">
       <h3>Type the Code Below:</h3>
       <pre>{{ codeSnippet }}</pre>
@@ -32,7 +39,7 @@
     </div>
   </div>
 
-  <div *ngIf="currentSnippetIndex >= snippets.length">
+  <div *ngIf="difficultySelected && currentSnippetIndex >= snippets.length">
     <h2>Session Complete!</h2>
     <p>Overall Accuracy: {{ calculateAccuracy().toFixed(2) }}%</p>
     <p>Overall Speed: {{ calculateSpeed().toFixed(2) }} characters per minute</p>
