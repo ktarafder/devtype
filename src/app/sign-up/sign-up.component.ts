@@ -26,7 +26,7 @@ export class SignUpComponent {
       password: this.password,
     };
 
-    this.http.post('https://albacore-rested-horse.ngrok-free.app/api/v1/register', formData).subscribe({
+    this.http.post('https://b59f-73-207-37-247.ngrok-free.app/api/v1/register', formData).subscribe({
       next: (response) => {
         console.log('User signed up successfully', response);
       },
