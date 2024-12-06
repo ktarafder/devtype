@@ -1,28 +1,41 @@
 <div class="game-container">
-    <nav class="navbar">
-      <div class="logo">CodeTyper</div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Leaderboard</a></li>
-        <li><a href="#">Sign Out</a></li>
-      </ul>
-    </nav>
-  
-    <div class="game-content">
-      <div class="snippet-display">
-        <h3>Type the Code Below:</h3>
-        <pre [innerHTML]="codeSnippet"></pre>
-      </div>
-  
-      <div class="input-area">
-        <label for="userInput">Your Typing:</label>
-        <input type="text" id="userInput" placeholder="Start typing here..." />
-      </div>
-  
-      <div class="progress">
-        <p>Progress: <span>0%</span></p>
-        <p>Time Elapsed: <span>00:00</span></p>
-        <p>Errors: <span>0</span></p>
-      </div>
+  <nav class="navbar">
+    <div class="logo">CodeTyper</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Leaderboard</a></li>
+      <li><a href="#">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <div class="game-content" *ngIf="currentSnippetIndex < snippets.length">
+    <div class="snippet-display">
+      <h3>Type the Code Below:</h3>
+      <pre>{{ codeSnippet }}</pre>
+    </div>
+
+    <div class="input-area">
+      <label for="userInput">Your Typing:</label>
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Start typing here..."
+        [value]="userInput"
+        (input)="onInputChange($event)"
+      />
+    </div>
+
+    <div class="progress">
+      <p>Progress: <span>{{ progress.toFixed(0) }}%</span></p>
+      <p>Time Elapsed: <span>{{ formatTime(timeElapsed) }}</span></p>
+      <p>Errors: <span>{{ errors }}</span></p>
     </div>
   </div>
+
+  <div *ngIf="currentSnippetIndex >= snippets.length">
+    <h2>Session Complete!</h2>
+    <p>Overall Accuracy: {{ calculateAccuracy().toFixed(2) }}%</p>
+    <p>Overall Speed: {{ calculateSpeed().toFixed(2) }} characters per minute</p>
+    <button (click)="ngOnInit()">Restart Session</button>
+  </div>
+</div>
