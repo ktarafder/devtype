@@ -4,10 +4,15 @@
     <ul class="nav-links">
       <li *ngIf="!isLoggedIn"><a href="/signup">Sign Up</a></li>
       <li *ngIf="!isLoggedIn"><a href="/signin">Log In</a></li>
-      <li *ngIf="isLoggedIn">Welcome, {{ userFirstName }}!</li>
-      <button *ngIf="isLoggedIn" (click)="logout()"><li>Log Out</li></button>
+      <li *ngIf="isLoggedIn">
+        <a (click)="openAccountDetails()" style="cursor: pointer;">Welcome, {{ userFirstName }}!</a>
+      </li>
+      <button *ngIf="isLoggedIn" (click)="logout()">
+        <li>Log Out</li>
+      </button>
     </ul>
   </nav>
+  
   
   
     <section class="hero">

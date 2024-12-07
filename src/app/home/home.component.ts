@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,45 +10,48 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, MatDialogModule], // Add MatDialogModule here
 })
 export class HomeComponent {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
 
   userFirstName: string | null = null;
   isLoggedIn: boolean = false;
 
   ngOnInit() {
-    // Fetch user information from localStorage to determine login state
-    this.userFirstName = localStorage.getItem('firstName');
-    this.isLoggedIn = !!this.userFirstName; // Check if userFirstName exists
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.userFirstName = localStorage.getItem('firstName');
+      this.isLoggedIn = !!this.userFirstName;
+    }
   }
 
-  deleteAccount() {
-    const userId = localStorage.getItem('userId'); // Assuming the user ID is stored in localStorage
-    if (!userId) {
-      console.error('User ID not found. Cannot delete account.');
-      return;
-    }
+  openAccountDetails() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return;
 
-    this.http.delete(`http://localhost:8080/api/v1/delete`).subscribe({
-      next: () => {
-        alert('Your account has been successfully deleted.');
-        localStorage.clear(); // Clear all user-related data
-        this.router.navigate(['/signin']); // Redirect to the sign-in page
-      },
-      error: (error: any) => {
-        console.error('Error deleting account:', error);
-        alert('There was an error deleting your account. Please try again later.');
-      }
-    });
+    this.http
+      .get('http://localhost:8080/api/v1/user', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .subscribe((response: any) => {
+        this.dialog.open(AccountDetailsComponent, {
+          data: response, // Pass user details to the modal
+          width: '400px', // Center and size the modal
+          height: 'auto',
+          disableClose: true, // Prevent closing on backdrop click
+          hasBackdrop: true, // Enable backdrop overlay
+          panelClass: 'custom-dialog-container', // Optional custom styling
+        });
+      });
   }
 
   logout() {
-    // Clear user-related data from localStorage and update state
-    localStorage.removeItem('jwtToken');
-    localStorage.removeItem('firstName');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('firstName');
+    }
     this.isLoggedIn = false;
     this.userFirstName = null;
   }
