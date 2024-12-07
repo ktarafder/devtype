@@ -29,7 +29,9 @@ export class SignInComponent {
       next: (response: any) => {
         // Assuming the token is in response.token
         if (response && response.token) {
+          console.log(response);
           localStorage.setItem('jwtToken', response.token); // Save token to localStorage
+          localStorage.setItem('firstName', response.firstName); // Save first name to localStorage
           console.log('JWT Token saved to localStorage');
           this.router.navigate(['/']);
         } else {
