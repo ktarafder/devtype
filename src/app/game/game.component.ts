@@ -11,7 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-  snippets: { id: number; text: string }[] = [];
+  snippets: { id: number; language: string; difficulty: string; text: string }[] = [];
   currentSnippetIndex: number = 0;
   codeSnippet: string = '';
   userInput: string = '';
@@ -24,6 +24,7 @@ export class GameComponent implements OnInit {
   totalErrors: number = 0;
   totalCharacters: number = 0;
   totalTime: number = 0;
+  totalScore: number = 0;
 
   difficultySelected: boolean = false;
   selectedDifficulty: string = '';
@@ -46,18 +47,18 @@ export class GameComponent implements OnInit {
   }
 
   fetchSnippets(): void {
-    const token = localStorage.getItem('jwtToken');
     const headers = {
       'Content-Type': 'application/json',
     };
 
     this.http
-      .get<{ id: number; text: string }[]>(
-        `https://b59f-73-207-37-247.ngrok-free.app/api/v1/snippets?difficulty=${this.selectedDifficulty}`,
+      .get<{ id: number; language: string; difficulty: string; text: string }[]>(
+        `http://localhost:8080/api/v1/snippets?difficulty=${this.selectedDifficulty}`,
+        { headers }
       )
       .subscribe({
         next: (response) => {
-          this.snippets = response;
+          this.snippets = Array.isArray(response) ? response : [response];
           this.loadNextSnippet();
         },
         error: (error) => {
@@ -68,8 +69,7 @@ export class GameComponent implements OnInit {
 
   loadNextSnippet(): void {
     if (this.currentSnippetIndex < this.snippets.length) {
-      const snippet = this.snippets[this.currentSnippetIndex];
-      this.codeSnippet = snippet.text;
+      this.codeSnippet = this.snippets[this.currentSnippetIndex].text;
       this.resetGame();
     } else {
       this.endSession();
@@ -97,18 +97,14 @@ export class GameComponent implements OnInit {
   }
 
   calculateProgress(): void {
-    const typedLength = this.userInput.length;
-    const totalLength = this.codeSnippet.length;
-    this.progress = Math.min((typedLength / totalLength) * 100, 100);
+    this.progress = Math.min((this.userInput.length / this.codeSnippet.length) * 100, 100);
   }
 
   calculateErrors(): void {
-    this.errors = 0;
-    for (let i = 0; i < this.userInput.length; i++) {
-      if (this.userInput[i] !== this.codeSnippet[i]) {
-        this.errors++;
-      }
-    }
+    this.errors = Math.max(
+      this.errors,
+      [...this.userInput].filter((char, i) => char !== this.codeSnippet[i]).length
+    );
   }
 
   startTimer(): void {
@@ -132,6 +128,18 @@ export class GameComponent implements OnInit {
 
   calculateSpeed(): number {
     return this.totalCharacters / (this.totalTime / 60);
+  }
+
+  calculateTotalScore(): number {
+    const baseScore =
+      this.selectedDifficulty === 'easy' ? 10 :
+      this.selectedDifficulty === 'medium' ? 20 :
+      30;
+
+    const accuracyBonus = this.calculateAccuracy() / 100;
+    const speedBonus = this.calculateSpeed() / 10;
+
+    return Math.round((baseScore * this.snippets.length * accuracyBonus) + speedBonus);
   }
 
   resetGame(): void {
@@ -159,11 +167,7 @@ export class GameComponent implements OnInit {
     };
 
     this.http
-      .post(
-        'https://b59f-73-207-37-247.ngrok-free.app/api/v1/typing-session',
-        data,
-        { headers }
-      )
+      .post('http://localhost:8080/api/v1/typing-session', data, { headers })
       .subscribe({
         next: (response) => {
           console.log('Metrics sent successfully:', response);
@@ -174,14 +178,35 @@ export class GameComponent implements OnInit {
       });
   }
 
+  sendTotalScore(): void {
+    const token = localStorage.getItem('jwtToken');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+
+    const data = {
+      total_score: this.totalScore,
+      difficulty: this.selectedDifficulty,
+    };
+
+    this.http
+      .post('http://localhost:8080/api/v1/game/finish', data, { headers })
+      .subscribe({
+        next: (response) => {
+          console.log('Total score sent successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error sending total score:', error);
+        },
+      });
+  }
+
   endSession(): void {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    const accuracy = this.calculateAccuracy().toFixed(2);
-    const speed = this.calculateSpeed().toFixed(2);
-    alert(
-      `Session Complete!\n\nAccuracy: ${accuracy}%\nSpeed: ${speed} characters per minute`
-    );
+
+    this.sendTotalScore();
   }
 }

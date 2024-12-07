@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ export class SignUpComponent {
   password: string = '';
 
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   onSubmit() {
     const formData = {
@@ -26,9 +28,11 @@ export class SignUpComponent {
       password: this.password,
     };
 
-    this.http.post('https://b59f-73-207-37-247.ngrok-free.app/api/v1/register', formData).subscribe({
+    this.http.post('http://localhost:8080/api/v1/register', formData).subscribe({
       next: (response) => {
         console.log('User signed up successfully', response);
+        // Navigate to the sign-in page
+        this.router.navigate(['/signin']);
       },
       error: (error) => {
         console.error('Error during signup', error);

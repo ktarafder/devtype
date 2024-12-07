@@ -39,10 +39,11 @@
     </div>
   </div>
 
-  <div *ngIf="difficultySelected && currentSnippetIndex >= snippets.length">
+  <div *ngIf="difficultySelected && currentSnippetIndex >= snippets.length" class="complete">
     <h2>Session Complete!</h2>
     <p>Overall Accuracy: {{ calculateAccuracy().toFixed(2) }}%</p>
     <p>Overall Speed: {{ calculateSpeed().toFixed(2) }} characters per minute</p>
+    <p>Total Score: {{ totalScore }}</p>
     <button (click)="ngOnInit()">Restart Session</button>
   </div>
 </div>
