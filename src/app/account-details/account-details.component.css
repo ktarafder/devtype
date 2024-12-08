@@ -1,0 +1,54 @@
+/* Dialog Container */
+.custom-dialog-container {
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+    background: linear-gradient(135deg, #121212, #333);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Dialog Title */
+  .dialog-title {
+    font-size: 1.8rem;
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+  }
+  
+  /* Dialog Content */
+  .dialog-content {
+    font-size: 1rem;
+    color: #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .detail-row {
+    text-align: left;
+  }
+  
+  /* Dialog Actions */
+  .dialog-actions {
+    margin-top: 1.5rem;
+  }
+  
+  .dialog-actions button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6b6b;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dialog-actions button:hover {
+    background-color: #ff4c4c;
+  }
+  

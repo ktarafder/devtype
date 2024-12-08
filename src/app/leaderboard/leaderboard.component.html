@@ -1,0 +1,29 @@
+<div class="home-container">
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="logo">Leaderboard</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Top Performers</h1>
+        <p>Recognizing the best contributors and their achievements.</p>
+      </div>
+    </div>
+  
+    <!-- Leaderboard Section -->
+    <div class="features">
+      <div class="feature-card" *ngFor="let user of leaderboard">
+        <h3>{{ user.name }}</h3>
+        <p>Score: {{ user.score }}</p>
+        <p>Rank: {{ user.rank }}</p>
+      </div>
+    </div>
+  </div>
+  
