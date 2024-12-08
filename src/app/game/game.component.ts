@@ -28,6 +28,9 @@ export class GameComponent implements OnInit {
 
   difficultySelected: boolean = false;
   selectedDifficulty: string = '';
+  languageSelected: boolean = false;
+  selectedLanguage: string = '';
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -46,14 +49,19 @@ export class GameComponent implements OnInit {
     this.fetchSnippets();
   }
 
+  selectLanguage(language: string): void {
+    this.selectedLanguage = language;
+    this.languageSelected = true;
+  }
+
   fetchSnippets(): void {
     const headers = {
       'Content-Type': 'application/json',
     };
-
+  
     this.http
       .get<{ id: number; language: string; difficulty: string; text: string }[]>(
-        `http://localhost:8080/api/v1/snippets?difficulty=${this.selectedDifficulty}`,
+        `http://localhost:8080/api/v1/snippets?difficulty=${this.selectedDifficulty}&language=${this.selectedLanguage}`,
         { headers }
       )
       .subscribe({
@@ -66,6 +74,7 @@ export class GameComponent implements OnInit {
         },
       });
   }
+  
 
   loadNextSnippet(): void {
     if (this.currentSnippetIndex < this.snippets.length) {

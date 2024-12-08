@@ -212,3 +212,39 @@
   .complete button:hover {
     background-color: #ff4949;
   }
+
+  /* Language Selection Styling */
+.language-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  color: #dcdcdc;
+}
+
+.language-selection h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ff6b6b;
+}
+
+.language-selection .language-btn {
+  margin: 0.5rem;
+}
+
+/* Shared Button Style */
+button {
+  margin: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff6b6b;
+}

@@ -1,6 +1,6 @@
 <div class="game-container">
   <nav class="navbar">
-    <div class="logo">CodeTyper</div>
+    <a href="#" style="text-decoration: none;"><div class="logo">DevType</div></a>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
       <li><a href="#">Leaderboard</a></li>
@@ -8,13 +8,22 @@
     </ul>
   </nav>
 
-  <div *ngIf="!difficultySelected" class="difficulty-selection">
+  <!-- Language Selection -->
+  <div *ngIf="!languageSelected" class="language-selection">
+    <h2>Select Language</h2>
+    <button class="language-btn" (click)="selectLanguage('python')">Python</button>
+    <button class="language-btn" (click)="selectLanguage('java')">Java</button>
+  </div>
+
+  <!-- Difficulty Selection -->
+  <div *ngIf="languageSelected && !difficultySelected" class="difficulty-selection">
     <h2>Select Difficulty</h2>
     <button (click)="selectDifficulty('easy')">Easy</button>
     <button (click)="selectDifficulty('medium')">Medium</button>
     <button (click)="selectDifficulty('hard')">Hard</button>
   </div>
 
+  <!-- Game Content -->
   <div class="game-content" *ngIf="difficultySelected && currentSnippetIndex < snippets.length">
     <div class="snippet-display">
       <h3>Type the Code Below:</h3>
@@ -39,6 +48,7 @@
     </div>
   </div>
 
+  <!-- Completion Screen -->
   <div *ngIf="difficultySelected && currentSnippetIndex >= snippets.length" class="complete">
     <h2>Session Complete!</h2>
     <p>Overall Accuracy: {{ calculateAccuracy().toFixed(2) }}%</p>
