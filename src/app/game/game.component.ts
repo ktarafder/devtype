@@ -2,6 +2,8 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -36,6 +38,8 @@ export class GameComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient
   ) {}
+
+  private router = inject(Router);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId) && this.difficultySelected) {
@@ -234,5 +238,9 @@ export class GameComponent implements OnInit {
 
     this.totalScore = this.calculateTotalScore(); // Call and assign the total score
   this.sendTotalScore();
+  }
+
+  restartSession() {
+    this.router.navigate(['/']);
   }
 }

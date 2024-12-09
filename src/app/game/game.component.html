@@ -3,8 +3,7 @@
     <a href="#" style="text-decoration: none;"><div class="logo">DevType</div></a>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
-      <li><a href="#">Leaderboard</a></li>
-      <li><a href="#">Sign Out</a></li>
+      <li><a href="/leaderboard">Leaderboard</a></li>
     </ul>
   </nav>
 
@@ -54,6 +53,6 @@
     <p>Overall Accuracy: {{ calculateAccuracy().toFixed(2) }}%</p>
     <p>Overall Speed: {{ calculateSpeed().toFixed(2) }} characters per minute</p>
     <p>Total Score: {{ calculateTotalScore() }}</p>
-    <button (click)="ngOnInit()">Restart Session</button>
+    <button (click)="restartSession()">Restart Session</button>
   </div>
 </div>

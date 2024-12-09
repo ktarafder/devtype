@@ -7,6 +7,7 @@
       <li *ngIf="isLoggedIn">
         <a (click)="openAccountDetails()" style="cursor: pointer;">Welcome, {{ userFirstName }}!</a>
       </li>
+      <li><a href="/leaderboard">Leaderboard</a></li>
       <button *ngIf="isLoggedIn" (click)="logout()">
         <li>Log Out</li>
       </button>
@@ -29,7 +30,7 @@
     <section class="features">
       <div class="feature-card">
         <h3>Real Code Snippets</h3>
-        <p>Practice typing real code from Python, JavaScript, and more.</p>
+        <p>Practice typing real code in Python and JavaScript.</p>
       </div>
       <div class="feature-card">
         <h3>Choose Your Language</h3>
