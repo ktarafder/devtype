@@ -140,16 +140,33 @@ export class GameComponent implements OnInit {
   }
 
   calculateTotalScore(): number {
+    // Base score per difficulty
     const baseScore =
       this.selectedDifficulty === 'easy' ? 10 :
       this.selectedDifficulty === 'medium' ? 20 :
       30;
-
-    const accuracyBonus = this.calculateAccuracy() / 100;
-    const speedBonus = this.calculateSpeed() / 10;
-
-    return Math.round((baseScore * this.snippets.length * accuracyBonus) + speedBonus);
+  
+    // Accuracy calculation with fallback for zero characters
+    const accuracy = this.totalCharacters > 0 
+      ? (this.totalCharacters - this.totalErrors) / this.totalCharacters 
+      : 0;
+  
+    // Speed calculation with fallback for zero time
+    const speed = this.totalTime > 0 
+      ? this.totalCharacters / (this.totalTime / 60) 
+      : 0;
+  
+    // Combine score factors
+    const accuracyBonus = accuracy * 100; // Scale accuracy to percentage
+    const speedBonus = speed; // Direct speed in characters per minute
+  
+    // Final score calculation
+    const totalScore = (baseScore * this.snippets.length) + (accuracyBonus * 0.5) + (speedBonus * 0.5);
+  
+    return Math.round(totalScore);
+    
   }
+  
 
   resetGame(): void {
     this.userInput = '';
@@ -196,7 +213,6 @@ export class GameComponent implements OnInit {
 
     const data = {
       total_score: this.totalScore,
-      difficulty: this.selectedDifficulty,
     };
 
     this.http
@@ -216,6 +232,7 @@ export class GameComponent implements OnInit {
       clearInterval(this.timerInterval);
     }
 
-    this.sendTotalScore();
+    this.totalScore = this.calculateTotalScore(); // Call and assign the total score
+  this.sendTotalScore();
   }
 }

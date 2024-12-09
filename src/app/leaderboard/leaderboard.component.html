@@ -20,8 +20,9 @@
   <!-- Leaderboard Section -->
   <div class="features">
     <div class="feature-card" *ngFor="let user of leaderboard">
-      <h3>{{ user.rank }}. {{ user.name }}</h3>
-      <p>Score: {{ user.score }}</p>
+      <h3>Rank: {{ user.rank }}</h3>
+      <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+      <p>Total Score: {{ user.total_score }}</p>
     </div>
   </div>
 </div>

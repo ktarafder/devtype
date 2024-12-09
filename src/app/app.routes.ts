@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 export const routes: Routes = [
     {
@@ -27,5 +28,9 @@ export const routes: Routes = [
     {
         path: 'leaderboard',
         component: LeaderboardComponent,
+    },
+    {
+        path: 'account',
+        component: AccountDetailsComponent,
     }
 ];

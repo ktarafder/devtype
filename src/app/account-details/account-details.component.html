@@ -1,1 +1,22 @@
-<p>account-details works!</p>
+<div class="account-details-container">
+    <h1>Account Details</h1>
+  
+    <div *ngIf="accountDetails; else loading">
+      <p><strong>First Name:</strong> {{ accountDetails.first_name }}</p>
+      <p><strong>Last Name:</strong> {{ accountDetails.last_name }}</p>
+      <p><strong>Email:</strong> {{ accountDetails.email }}</p>
+      <p><strong>Created At:</strong> {{ accountDetails.created_at }}</p>
+      <p><strong>Total Score:</strong> {{ accountDetails.total_score }}</p>
+  
+      <!-- Buttons -->
+      <div class="button-container">
+        <button class="back-button" (click)="goBack()">Return to Home</button>
+        <button class="delete-button" (click)="deleteAccount()">Delete Account</button>
+      </div>
+    </div>
+  
+    <ng-template #loading>
+      <p>Loading account details...</p>
+    </ng-template>
+  </div>
+  

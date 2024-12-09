@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.css'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class LeaderboardComponent implements OnInit {
-  leaderboard: { name: string; score: number; rank: number }[] = [];
+  leaderboard: { first_name: string; last_name: string; rank: number; total_score: number }[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +19,10 @@ export class LeaderboardComponent implements OnInit {
   }
 
   fetchLeaderboard(): void {
-    this.http.get<{ name: string; score: number; rank: number }[]>('http://localhost:8080/api/v1/leaderboard')
+    this.http
+      .get<{ first_name: string; last_name: string; rank: number; total_score: number }[]>(
+        'http://localhost:8080/api/v1/leaderboard'
+      )
       .subscribe({
         next: (data) => {
           this.leaderboard = data;

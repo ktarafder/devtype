@@ -1,54 +1,87 @@
-/* Dialog Container */
-.custom-dialog-container {
-    max-width: 500px;
-    width: 90%;
-    margin: auto;
-    background: linear-gradient(135deg, #121212, #333);
-    color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-    padding: 1.5rem;
-    text-align: center;
-  }
-  
-  /* Dialog Title */
-  .dialog-title {
-    font-size: 1.8rem;
-    color: #ff6b6b;
-    margin-bottom: 1rem;
-  }
-  
-  /* Dialog Content */
-  .dialog-content {
-    font-size: 1rem;
-    color: #ddd;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  
-  .detail-row {
-    text-align: left;
-  }
-  
-  /* Dialog Actions */
-  .dialog-actions {
-    margin-top: 1.5rem;
-  }
-  
-  .dialog-actions button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #ff6b6b;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dialog-actions button:hover {
-    background-color: #ff4c4c;
-  }
-  
+/* Container Styling */
+.account-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #121212, #333);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Title Styling */
+.account-details-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #ff6b6b;
+  text-align: center;
+}
+
+/* Details Section Styling */
+.account-details-container p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Strong Text Styling */
+.account-details-container p strong {
+  color: #ff6b6b;
+}
+
+/* Loading State Styling */
+.account-details-container p#loading {
+  font-size: 1.2rem;
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Button Container Styling */
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Back Button Styling */
+.back-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #45a049;
+}
+
+/* Delete Button Styling */
+.delete-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #ff4c4c;
+}

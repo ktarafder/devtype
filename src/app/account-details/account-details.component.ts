@@ -1,34 +1,61 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-account-details',
-  template: `
-    <h2 mat-dialog-title class="dialog-title">Account Details</h2>
-    <mat-dialog-content class="dialog-content">
-      <div class="detail-row"><strong>First Name:</strong> {{ data.first_name }}</div>
-      <div class="detail-row"><strong>Last Name:</strong> {{ data.last_name }}</div>
-      <div class="detail-row"><strong>Email:</strong> {{ data.email }}</div>
-      <div class="detail-row"><strong>Created At:</strong> {{ data.created_at }}</div>
-      <div class="detail-row"><strong>Total Score:</strong> {{ data.total_score }}</div>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end" class="dialog-actions">
-      <button mat-button color="primary" (click)="close()">Close</button>
-    </mat-dialog-actions>
-  `,
+  templateUrl: './account-details.component.html',
+  styleUrls: ['./account-details.component.css'],
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-  styleUrls: ['./account-details.component.css'], // Add the custom CSS
+  imports: [CommonModule],
 })
-export class AccountDetailsComponent {
-  constructor(
-    private dialogRef: MatDialogRef<AccountDetailsComponent>, // Handles closing the modal
-    @Inject(MAT_DIALOG_DATA) public data: any // Injects data passed to the modal
-  ) {}
+export class AccountDetailsComponent implements OnInit {
+  accountDetails: any = null;
 
-  // Close method for the dialog
-  close() {
-    this.dialogRef.close();
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return;
+
+    this.http
+      .get('http://localhost:8080/api/v1/user', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .subscribe(
+        (response) => {
+          this.accountDetails = response;
+        },
+        (error) => {
+          console.error('Failed to fetch account details:', error);
+        }
+      );
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
+  }
+
+  deleteAccount() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return;
+
+    this.http
+      .delete('http://localhost:8080/api/v1/delete', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .subscribe(
+        () => {
+          alert('Account successfully deleted.');
+          localStorage.removeItem('jwtToken');
+          localStorage.removeItem('firstName');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.error('Failed to delete account:', error);
+          alert('Failed to delete account. Please try again later.');
+        }
+      );
   }
 }
