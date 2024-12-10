@@ -1,0 +1,35 @@
+<div *ngIf="base64Response" class="graph-container">
+    <nav class="navbar">
+        <a href="#" style="text-decoration: none;"><div class="logo">DevType</div></a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="/leaderboard">Leaderboard</a></li>
+        </ul>
+      </nav>
+    <div class="graph-card">
+      <h3>Accuracy Graph</h3>
+      <img [src]="'data:image/png;base64,' + (base64Response.accuracy_graph || '')" alt="Accuracy Graph" />
+    </div>
+  
+    <div class="graph-card">
+      <h3>Speed Graph</h3>
+      <img [src]="'data:image/png;base64,' + (base64Response.speed_graph || '')" alt="Speed Graph" />
+    </div>
+
+    <div *ngIf="behavior" class="feedback-container">
+        <div class="feedback-card">
+          <h3>User Feedback</h3>
+          <p>{{ behavior.feedback_text || 'No feedback available' }}</p>
+        </div>
+        <div class="feedback-card">
+          <h3>Improvement Area</h3>
+          <p>{{ behavior.improvement_area || 'No improvement suggestions available' }}</p>
+        </div>
+      </div>
+
+  </div>
+  
+  <div *ngIf="!base64Response" class="loading-container">
+    <p>Loading graphs...</p>
+  </div>
+  

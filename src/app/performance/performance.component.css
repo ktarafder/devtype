@@ -1,0 +1,124 @@
+/* Main Graph Container Styling */
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #121212, #333);
+    color: #fff;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  /* Individual Graph Card Styling */
+  .graph-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1a1a1a; /* Dark background for graphs */
+    border: 2px solid #ff6b6b;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .graph-card h3 {
+    font-size: 1.8rem;
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .graph-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Loading Container Styling */
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+  
+  .loading-container p {
+    font-size: 1.2rem;
+    color: #ddd;
+  }
+
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6b6b;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .navbar .nav-links a:hover {
+    color: #ff6b6b;
+  }
+  
+  /* Feedback Container Styling */
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+  }
+  
+  /* Feedback Card Styling */
+  .feedback-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1a1a1a; /* Dark background for feedback */
+    border: 2px solid #6bafff; /* Light blue border for distinction */
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 100%;
+  }
+  
+  .feedback-card h3 {
+    font-size: 1.8rem;
+    color: #6bafff;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .feedback-card p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: center;
+  }
+  

@@ -117,4 +117,76 @@
     font-size: 1rem;
     color: #dcdcdc;
   }
+
+  /* Log Out Button Styling */
+.navbar button {
+  background-color: #ff6b6b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar button:hover {
+  background-color: #ff4c4c;
+  transform: scale(1.05);
+}
+
+.navbar button:active {
+  background-color: #e63e3e;
+  transform: scale(0.95);
+}
+
+/* Ensure the button aligns with the navigation links */
+.navbar .nav-links {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar button li {
+  list-style: none;
+  margin: 0;
+}
+
+/* Common Button Styling for Navigation Links */
+.navbar .nav-links a,
+.navbar button {
+  background-color: #ff6b6b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Hover Effect */
+.navbar .nav-links a:hover,
+.navbar button:hover {
+  background-color: #ff4c4c;
+  transform: scale(1.05);
+}
+
+/* Active Effect */
+.navbar .nav-links a:active,
+.navbar button:active {
+  background-color: #e63e3e;
+  transform: scale(0.95);
+}
+
+/* Specific Styling for List Items */
+.navbar .nav-links li {
+  list-style: none;
+  margin: 0;
+}
   
