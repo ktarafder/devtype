@@ -31,7 +31,6 @@ export class SignUpComponent {
     this.http.post('http://localhost:8080/api/v1/register', formData).subscribe({
       next: (response) => {
         console.log('User signed up successfully', response);
-        // Navigate to the sign-in page
         this.router.navigate(['/signin']);
       },
       error: (error) => {

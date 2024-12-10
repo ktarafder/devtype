@@ -27,11 +27,10 @@ export class SignInComponent {
 
     this.http.post('http://localhost:8080/api/v1/login', formSubmitData).subscribe({
       next: (response: any) => {
-        // Assuming the token is in response.token
         if (response && response.token) {
           console.log(response);
-          localStorage.setItem('jwtToken', response.token); // Save token to localStorage
-          localStorage.setItem('firstName', response.firstName); // Save first name to localStorage
+          localStorage.setItem('jwtToken', response.token);
+          localStorage.setItem('firstName', response.firstName);
           console.log('JWT Token saved to localStorage');
           this.router.navigate(['/']);
         } else {

@@ -1,4 +1,3 @@
-  /* Container Styling */
   .home-container {
     display: flex;
     flex-direction: column;
@@ -9,7 +8,6 @@
     padding: 1rem;
   }
   
-  /* Navbar Styling */
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -45,7 +43,6 @@
     color: #ff6b6b;
   }
   
-  /* Hero Section Styling */
   .hero {
     text-align: center;
     margin-bottom: 3rem;
@@ -87,7 +84,6 @@
     background-color: #ff4c4c;
   }
   
-  /* Features Section Styling */
   .features {
     display: flex;
     flex-wrap: wrap;
@@ -118,7 +114,6 @@
     color: #dcdcdc;
   }
 
-  /* Log Out Button Styling */
 .navbar button {
   background-color: #ff6b6b;
   color: #fff;
@@ -141,7 +136,6 @@
   transform: scale(0.95);
 }
 
-/* Ensure the button aligns with the navigation links */
 .navbar .nav-links {
   align-items: center;
   display: flex;
@@ -153,7 +147,6 @@
   margin: 0;
 }
 
-/* Common Button Styling for Navigation Links */
 .navbar .nav-links a,
 .navbar button {
   background-color: #ff6b6b;
@@ -170,21 +163,18 @@
   text-align: center;
 }
 
-/* Hover Effect */
 .navbar .nav-links a:hover,
 .navbar button:hover {
   background-color: #ff4c4c;
   transform: scale(1.05);
 }
 
-/* Active Effect */
 .navbar .nav-links a:active,
 .navbar button:active {
   background-color: #e63e3e;
   transform: scale(0.95);
 }
 
-/* Specific Styling for List Items */
 .navbar .nav-links li {
   list-style: none;
   margin: 0;

@@ -1,4 +1,3 @@
-/* Container Styling */
 .account-details-container {
   display: flex;
   flex-direction: column;
@@ -11,7 +10,6 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Title Styling */
 .account-details-container h1 {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
@@ -19,7 +17,6 @@
   text-align: center;
 }
 
-/* Details Section Styling */
 .account-details-container p {
   font-size: 1.1rem;
   color: #ddd;
@@ -32,12 +29,10 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Strong Text Styling */
 .account-details-container p strong {
   color: #ff6b6b;
 }
 
-/* Loading State Styling */
 .account-details-container p#loading {
   font-size: 1.2rem;
   color: #ff6b6b;
@@ -45,14 +40,12 @@
   margin-top: 2rem;
 }
 
-/* Button Container Styling */
 .button-container {
   margin-top: 2rem;
   display: flex;
   gap: 1.5rem;
 }
 
-/* Back Button Styling */
 .back-button {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
@@ -69,7 +62,6 @@
   background-color: #45a049;
 }
 
-/* Delete Button Styling */
 .delete-button {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
